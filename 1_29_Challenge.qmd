@@ -1,0 +1,65 @@
+---
+title: "1_29_Challenge"
+format: html
+author: Qiaoyun Ai
+---
+
+# load the data to variable d
+
+```{r}
+library (tidyverse)
+f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/Country-Data-2016.csv"
+d <- read.csv(f)
+```
+
+# how many variable
+
+```{r}
+ncol(d)
+```
+
+# how many observations
+
+```{r}
+nrow(d)
+```
+
+# how many countries
+
+```{r}
+n_distinct(d$country)
+```
+
+# median area
+
+```{r}
+median(d$area, na.rm = TRUE)
+```
+
+# median population size
+
+```{r}
+median(d$population, na.rm = TRUE)
+```
+
+# create new density: population/area
+
+```{r}
+d$density <- d$population/d$area
+d$density
+```
+
+# 10 most dense country
+
+```{r}
+d$density <- d$population/d$area
+d <- d[order(d$density, decreasing = TRUE), ]
+d[1:10, ]
+```
+
+# 10 least dense
+
+```{r}
+d <- d[order(d$density), ]
+d[1:10, ]
+```
