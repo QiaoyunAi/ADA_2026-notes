@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Qiaoyun Ai">
+
+<title>1_29_Challenge</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="1_29_Challenge_files/libs/clipboard/clipboard.min.js"></script>
+<script src="1_29_Challenge_files/libs/quarto-html/quarto.js"></script>
+<script src="1_29_Challenge_files/libs/quarto-html/popper.min.js"></script>
+<script src="1_29_Challenge_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="1_29_Challenge_files/libs/quarto-html/anchor.min.js"></script>
+<link href="1_29_Challenge_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="1_29_Challenge_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="1_29_Challenge_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="1_29_Challenge_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="1_29_Challenge_files/libs/bootstrap/bootstrap-c0367b04c37547644fece4185067e4a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">1_29_Challenge</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Qiaoyun Ai </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="load-the-data-to-variable-d" class="level1">
+<h1>load the data to variable d</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readr' was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.5.1
+✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.1.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/difiore/ada-datasets/main/Country-Data-2016.csv"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="how-many-variable" class="level1">
+<h1>how many variable</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 16</code></pre>
+</div>
+</div>
+</section>
+<section id="how-many-observations" class="level1">
+<h1>how many observations</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 248</code></pre>
+</div>
+</div>
+</section>
+<section id="how-many-countries" class="level1">
+<h1>how many countries</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(d<span class="sc">$</span>country)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 248</code></pre>
+</div>
+</div>
+</section>
+<section id="median-area" class="level1">
+<h1>median area</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(d<span class="sc">$</span>area, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 69700</code></pre>
+</div>
+</div>
+</section>
+<section id="median-population-size" class="level1">
+<h1>median population size</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(d<span class="sc">$</span>population, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4911766</code></pre>
+</div>
+</div>
+</section>
+<section id="create-new-density-populationarea" class="level1">
+<h1>create new density: population/area</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>density <span class="ot">&lt;-</span> d<span class="sc">$</span>population<span class="sc">/</span>d<span class="sc">$</span>area</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>density</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] 4.992770e+01 1.053735e+02 1.660221e+01 2.730804e+02 1.828632e+02
+  [6] 1.574184e+01 1.804176e+02           NA 2.086591e+02 1.562073e+01
+ [11] 1.027597e+02 6.231222e+02 2.938944e+00 1.033200e+02 1.129420e+02
+ [16] 2.338595e+01 1.771859e+03 1.173334e+03 6.758233e+02 4.619311e+01
+ [21] 3.709373e+02 1.512536e+01 9.277625e+01 1.299926e+03 1.932383e+01
+ [26] 9.831666e+00 7.553284e+01 3.752117e+00           NA 2.398858e+01
+ [31]           NA 2.215497e+02 7.452663e+01 6.481744e+01 6.904335e+01
+ [36] 3.859963e+02 8.677193e+01 4.993105e+01 3.515373e+00 1.353814e+02
+ [41] 2.124697e+02 8.654378e+00 9.058766e+00 2.315595e+01 1.424915e+02
+ [46] 1.133333e+01 4.257143e+01 4.103637e+01 3.494277e+02 1.390379e+01
+ [51] 4.168644e+01 9.421025e+01 7.889253e+01 9.950778e+01 3.307117e+02
+ [56] 1.285479e+02 1.349721e+02 3.385072e+01 1.295193e+02 3.570362e+01
+ [61] 9.801198e+01 2.153022e+02 5.596114e+01 8.835928e+01 2.918754e+02
+ [66] 2.640701e+01 5.550756e+01 2.797869e+01 9.007137e+01 2.761029e-01
+ [71] 3.603446e+01 1.498803e+02 4.976409e+01 1.619696e+01 1.033763e+02
+ [76] 2.166782e+00 6.784329e+01           NA 6.371110e+00 1.742106e+02
+ [81] 7.074930e+01 2.264690e+02 1.103732e+02 4.179714e+03 8.166026e+01
+ [86] 2.665314e-02 3.217849e+02 2.800983e+02 2.973989e+02 1.370111e+02
+ [91] 8.471795e+02 4.791469e+01 4.778325e+01 3.420130e+00 3.643250e+02
+ [96]           NA 8.420000e+03 7.803259e+01 6.445042e+03 1.063931e+02
+[101] 3.222505e+00 3.807714e+02 1.344103e+02 4.964478e+01 8.454194e+01
+[106] 6.961856e+01 1.530507e+02 3.875452e+02 2.052669e+02 7.224178e+01
+[111] 2.684205e+02 3.358418e+02 8.387414e+02 9.085944e+01 6.663409e+00
+[116] 7.913148e+01 1.303465e+02 1.718546e+02 1.565010e+02 2.833164e+01
+[121] 2.918726e+01 3.075919e+01 5.946828e+02 6.416409e+01 3.767355e+01
+[126] 3.644007e+00 2.351500e+02 4.417202e+01 2.205151e+02 2.116896e+04
+[131] 8.151577e+01 4.056391e+01 1.516213e+02 9.250910e+01 1.319641e+03
+[136] 1.367170e+01 1.310016e+03 3.988453e+02 3.501773e+02 3.489572e+00
+[141] 6.567779e+02 5.983021e+02 6.197229e+01 1.047782e+02 1.526750e+04
+[146] 1.913482e+00 4.684861e+01 5.138235e+01 7.462255e+01 3.165342e+01
+[151] 8.324274e+01 2.683888e+00 4.542857e+02 2.143708e+02 4.079605e+02
+[156] 1.462261e+01 1.657911e+01 4.531626e+01 1.424288e+01 1.965451e+02
+[161] 4.576923e+00 6.138889e+01 2.072641e+02 1.128103e+02 1.608294e+01
+[166] 1.062015e+01 2.500780e+02 4.632898e+01 4.660498e+02 4.848878e+01
+[171] 1.441628e+01 1.667668e+01 2.368862e+01 3.366613e+02 1.021277e+00
+[176] 1.233260e+02 1.175514e+02 2.609396e+02 1.894370e+02 2.782643e+02
+[181] 9.088577e+01 8.329732e+00 4.807401e+02 3.446190e+02 2.530844e+01
+[186] 1.989885e+02 2.661071e+02 7.349815e+02 2.337603e+01 2.638226e+02
+[191] 6.985977e+01 5.413115e+02 2.012510e+02 1.290992e+01 7.104357e+01
+[196] 9.263487e+01 2.031429e+02 8.195007e+01 8.141280e+03 2.838112e+02
+[201] 1.110437e+02 9.783515e+01 2.154170e+01 1.664904e+01 4.402920e+01
+[206] 7.686395e-03 4.925310e+02 1.869062e+01 9.526908e+01 3.361300e+02
+[211] 1.939789e+01 3.538231e+00 4.965517e+00 8.267755e+01 2.176710e+01
+[216] 1.967641e+02 9.215279e+01 6.507817e+02 5.724639e+01 5.388566e+01
+[221] 1.324766e+02 8.276967e+01 1.329985e+02 1.114167e+02 1.425716e+02
+[226] 2.383703e+02 6.746058e+01 1.013503e+02 1.071793e+01 5.303797e+01
+[231] 4.180385e+02 1.539249e+02 7.361357e+01 6.913589e+01 2.630771e+02
+[236]           NA 1.896486e+01 5.422723e+01 3.270372e+01 6.526585e+01
+[241] 2.233686e+01 3.209853e+01 2.848611e+02 1.099507e+02 2.146113e+00
+[246] 5.064193e+01 2.001848e+01 3.641532e+01</code></pre>
+</div>
+</div>
+</section>
+<section id="most-dense-country" class="level1">
+<h1>10 most dense country</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>density <span class="ot">&lt;-</span> d<span class="sc">$</span>population<span class="sc">/</span>d<span class="sc">$</span>area</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d[<span class="fu">order</span>(d<span class="sc">$</span>density, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    country population   area
+130                   Macau     592731   28.0
+145                  Monaco      30535    2.0
+97  Holy See (Vatican City)        842    0.1
+199               Singapore    5674472  697.0
+99                Hong Kong    7141106 1108.0
+84                Gibraltar      29258    7.0
+17                  Bahrain    1346613  760.0
+135                Maldives     393253  298.0
+137                   Malta     413965  316.0
+24                  Bermuda      70196   54.0
+                                 govt_form birthrate deathrate life_expect
+130 special administrative region of China       8.9       4.2        84.5
+145                constitutional monarchy       6.7       9.2        89.5
+97                                monarchy        NA        NA          NA
+199                               republic       8.3       3.4        84.7
+99  special administrative region of China       9.2       7.1        82.9
+84              British overseas territory      14.1       8.4        79.3
+17                 constitutional monarchy      13.7       2.7        78.7
+135                               republic      15.8       3.9        75.4
+137                               republic      10.2       9.1        80.2
+24              British overseas territory      11.3       8.2        81.2
+    mammals birds reptiles amphibians fishes mollucs other_inverts plants
+130       0     4        1          0      5       0             1      0
+145       3     0        0          0     15       0             3      0
+97        1     0        0          0      0       0             0      0
+199      13    17        6          0     27       0           173     58
+99        3    20        5          5     13       1             7      9
+84        4     5        0          0     18       3             2      0
+17        3     6        4          0     10       0            13      0
+135       2     0        3          0     24       0            46      0
+137       2     5        1          0     22       3             2      4
+24        4     1        4          0     26       0            28      8
+    fungi_protists   density
+130              0 21168.964
+145              0 15267.500
+97               0  8420.000
+199              0  8141.280
+99               0  6445.042
+84               0  4179.714
+17               0  1771.859
+135              0  1319.641
+137              0  1310.016
+24               0  1299.926</code></pre>
+</div>
+</div>
+</section>
+<section id="least-dense" class="level1">
+<h1>10 least dense</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d[<span class="fu">order</span>(d<span class="sc">$</span>density), ]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                     country population    area
+206 South Georgia and South Sandwich Islands         30    3903
+86                                 Greenland      57733 2166086
+70                          Falkland Islands       3361   12173
+175                         Pitcairn Islands         48      47
+146                                 Mongolia    2992908 1564116
+245                           Western Sahara     570866  266000
+76                             French Guiana     181000   83534
+152                                  Namibia    2212307  824292
+13                                 Australia   22751014 7741220
+101                                  Iceland     331918  103000
+                       govt_form birthrate deathrate life_expect mammals birds
+206   British overseas territory        NA        NA          NA       3     6
+86  autonomous region of Denmark      14.5       8.5        72.1       9     3
+70    British overseas territory        NA        NA          NA       4     9
+175   British overseas territory        NA        NA          NA       1    10
+146                     republic      20.3       6.4        69.3      11    24
+245 autonomous region of Morocco      30.2       8.3        62.6      10     3
+76  overseas territory of France       0.0       0.0        76.1       8     8
+152                     republic      19.8      13.9        51.6      14    28
+13        parliamentary monarchy      12.2       7.1        82.2      63    50
+101                     republic      13.9       6.3        83.0       6     4
+    reptiles amphibians fishes mollucs other_inverts plants fungi_protists
+206        0          0      0       0             0      0              0
+86         0          0      9       0             0      1              0
+70         0          0      5       0             0      5              0
+175        0          0     10       5            11      7              0
+146        0          0      2       0             3      0              0
+245        1          0     31       0             3      0              0
+76         7          3     29       0             0     18              0
+152        5          1     33       0             4     28              0
+13        43         47    118     174           340     92              1
+101        0          0     16       0             0      0              0
+        density
+206 0.007686395
+86  0.026653143
+70  0.276102851
+175 1.021276596
+146 1.913482120
+245 2.146112782
+76  2.166782388
+152 2.683887506
+13  2.938944249
+101 3.222504854</code></pre>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
